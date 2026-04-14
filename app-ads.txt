@@ -1,0 +1,29 @@
+# app-ads.txt — Wax Gaming
+# Authorizes the ad networks below to sell ads across all Wax Gaming apps.
+# Contact: anumsaleem640@gmail.com
+
+# -----------------------------------------------
+# Google AdMob
+# Replace pub-XXXXXXXXXXXXXXXX with your AdMob Publisher ID
+# AdMob Dashboard → Account Information → Publisher ID
+# -----------------------------------------------
+google.com, 
+
+pub-2775943856632979, DIRECT, f08c47fec0942fa0
+
+# -----------------------------------------------
+# Unity Ads
+# Replace XXXXXXXXX with your Unity Game ID
+# Unity Dashboard → Monetization → Project Settings → Game ID
+# -----------------------------------------------
+unity.com, 6078687, DIRECT, 96cabb5fbdde37a7
+unity.com, 6078686, DIRECT, 96cabb5fbdde37a7
+
+# -----------------------------------------------
+# Important notes:
+# - Host at: https://waxgamingstudio.github.io/app-ads.txt
+# - Your developer website (listed in App Store / Play Store) must be yourdomain.com
+# - Both stores crawl this file to validate authorized sellers
+# - One app-ads.txt covers all apps under the same developer account/domain
+# - Update this file whenever you add or remove ad networks
+# -----------------------------------------------
