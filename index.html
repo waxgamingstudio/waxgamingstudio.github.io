@@ -1,0 +1,235 @@
+<!-- =========================================================
+     WAX GAMING — HOME PAGE (index.html)
+     Sections: Hero · Games · About · Contact
+     Header and footer are injected dynamically by main.js.
+     theme.js runs first (no defer) to prevent theme flash.
+========================================================= -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Experience the next level of gaming with Wax Gaming—where intense action meets realistic simulation. Control every move, master every challenge, and shape your own path to victory."
+    />
+    <title>Wax Gaming — Action &amp; Simulation Games</title>
+    <script src="theme.js"></script>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body>
+    <!-- ══════════════ HEADER ══════════════════════ -->
+    <div id="header-container"></div>
+
+    <!-- ══════════════ HERO ════════════════════════ -->
+    <section class="hero section" id="home" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-badge">Indie Mobile Game Studio</div>
+        <h1 class="hero-title" id="hero-heading">
+          <em>Experience the</em> Next Level<br />of Gaming With<em>
+            Wax Gaming</em
+          >
+        </h1>
+        <p class="hero-sub">
+          ——— where intense action meets realistic simulation. Control every
+          move, master every challenge, and shape your own path to victory.
+        </p>
+        <div class="hero-buttons">
+          <a
+            href="#"
+            class="btn btn-primary"
+            aria-label="View our games on the App Store"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+              />
+            </svg>
+            View on App Store
+          </a>
+          <a
+            href="#"
+            class="btn btn-green"
+            aria-label="View our games on Google Play"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M3.18 23.76c.35.2.74.24 1.12.1l12.56-7.25-2.77-2.77-10.91 9.92zM20.07 10.3l-3.39-1.96-3.08 3.08 3.08 3.08 3.4-1.96c.97-.56.97-2.1-.01-2.24zM2.18.76C1.88 1.08 1.7 1.57 1.7 2.18V21.8c0 .62.18 1.1.49 1.42l.07.07 10.83-10.83v-.26L2.25.69l-.07.07zM4.3.13L16.86 7.4l-2.77 2.77L3.18.22C3.57.08 3.95.12 4.3.13z"
+              />
+            </svg>
+            View on Google Play
+          </a>
+        </div>
+        <div class="hero-accent" role="list">
+          <div class="hero-pill" role="listitem">Free to Play</div>
+          <div class="hero-pill" role="listitem">iOS &amp; Android</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ GAMES ═══════════════════════ -->
+    <section class="section" id="games" aria-labelledby="games-heading">
+      <div class="games">
+        <div class="container">
+          <div class="games-header">
+            <span class="section-label">Our Games</span>
+            <h2 class="section-title" id="games-heading">
+              Made to Play &amp; Enjoy
+            </h2>
+            <p class="section-sub">
+              Tap into our growing collection of mobile games — easy to pick up,
+              satisfying to master.
+            </p>
+          </div>
+          <div class="games-grid" id="gamesGrid">
+            <article
+              class="game-card"
+              id="game-stack-blitz"
+              aria-label="Stack Blitz game"
+            >
+              <div
+                class="game-icon-placeholder icon-blue"
+                role="img"
+                aria-label="Stack Blitz icon"
+              >
+                🧱
+              </div>
+              <div>
+                <h3 class="game-name">Stack Blitz</h3>
+                <p class="game-desc">
+                  A fast-paced stacking puzzle game. Build the tallest tower you
+                  can.
+                </p>
+              </div>
+              <div class="game-actions">
+                <a href="#" class="btn btn-primary btn-sm">🍎 App Store</a>
+                <a href="#" class="btn btn-green btn-sm">▶ Play Store</a>
+              </div>
+            </article>
+            <article
+              class="game-card"
+              id="game-bubble-pop"
+              aria-label="Bubble Pop Rush game"
+            >
+              <div
+                class="game-icon-placeholder icon-green"
+                role="img"
+                aria-label="Bubble Pop Rush icon"
+              >
+                🫧
+              </div>
+              <div>
+                <h3 class="game-name">Bubble Pop Rush</h3>
+                <p class="game-desc">
+                  Pop colourful bubbles in satisfying combos. Relaxing yet
+                  addictive.
+                </p>
+              </div>
+              <div class="game-actions">
+                <a href="#" class="btn btn-primary btn-sm">🍎 App Store</a>
+                <a href="#" class="btn btn-green btn-sm">▶ Play Store</a>
+              </div>
+            </article>
+            <article
+              class="game-card"
+              id="game-color-dash"
+              aria-label="Color Dash game"
+            >
+              <div
+                class="game-icon-placeholder icon-peach"
+                role="img"
+                aria-label="Color Dash icon"
+              >
+                🎨
+              </div>
+              <div>
+                <h3 class="game-name">Color Dash</h3>
+                <p class="game-desc">
+                  Race against the clock matching colours at lightning speed.
+                </p>
+              </div>
+              <div class="game-actions">
+                <a href="#" class="btn btn-primary btn-sm">🍎 App Store</a>
+                <a href="#" class="btn btn-green btn-sm">▶ Play Store</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ ABOUT ═══════════════════════ -->
+    <section class="section" id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-card">
+          <div class="about-emoji" aria-hidden="true">🕹️</div>
+          <span class="section-label">About Us</span>
+          <h2 class="section-title" id="about-heading">Games for Everyone</h2>
+          <p class="about-text">
+            Wax Gaming develops simple, fun, and optimised mobile games for all
+            players. We believe great games don't need to be complicated — just
+            thoughtfully designed, smooth to play, and always free to enjoy.
+          </p>
+          <div class="about-stats" role="list">
+            <div class="stat-item" role="listitem">
+              <div class="stat-value">4+</div>
+              <div class="stat-label">Games</div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat-item" role="listitem">
+              <div class="stat-value">100%</div>
+              <div class="stat-label">Free</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ CONTACT ═════════════════════ -->
+    <section class="section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-emoji" aria-hidden="true">✉️</div>
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title" id="contact-heading">
+            Straight Talk, No Forms
+          </h2>
+          <p class="contact-text">
+            Got feedback, partnership ideas, or just want to say hell yeah? Drop
+            us an email — we read every message.
+          </p>
+          <div class="contact-email-block">
+            <a href="mailto:anumsaleem640@gmail.com" class="contact-email-link">
+              anumsaleem640@gmail.com
+            </a>
+            <p class="contact-note">
+              We reply within 3 to 5 working days. No bots, no spam.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ══════════════════════ -->
+    <div id="footer-container"></div>
+  </body>
+</html>

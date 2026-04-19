@@ -1,0 +1,45 @@
+<!-- =========================================================
+     WAX GAMING — HEADER COMPONENT
+     Loaded dynamically into #header-container on every page.
+     Contains the sticky nav bar, logo, nav slot, theme toggle, and hamburger.
+     Note: #nav-container here is the injection point for nav.html.
+     header.html must finish loading before nav.html is fetched
+     (see loadComponents() in main.js).
+========================================================= -->
+<!-- header.html -->
+<header class="nav" role="banner">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="Wax Gaming Logo">
+      <span class="logo-light">
+        <span>Wax Gaming</span>
+      </span>
+      <span class="logo-dark">
+        <span>Wax Gaming</span>
+      </span>
+    </a>
+
+    <!-- NAV COMPONENT LOADS HERE -->
+    <div id="nav-container"></div>
+
+    <!-- THEME TOGGLE BUTTON -->
+    <button
+      class="theme-toggle"
+      aria-label="Switch to dark mode"
+      aria-pressed="false"
+    >
+      <span class="icon-sun" aria-hidden="true">🌞</span>
+      <span class="icon-moon" aria-hidden="true">🌜</span>
+    </button>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

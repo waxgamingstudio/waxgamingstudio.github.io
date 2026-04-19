@@ -1,0 +1,865 @@
+/* =========================================================
+   WAX GAMING — MAIN STYLESHEET
+   Architecture:
+   - Tokens (Design System)
+   - Base / Reset
+   - Accessibility
+   - Utilities
+   - Navigation
+   - Buttons
+   - Hero
+   - Section Shared Labels
+   - Games
+   - About
+   - Contact
+   - Footer
+   - Privacy Card
+   - Theme Toggle
+   - Back to Top
+   - Responsive
+   - Reduced Motion
+========================================================= */
+
+/* =========================
+   1. GOOGLE FONT
+========================= */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+
+/* =========================
+   2. DESIGN TOKENS (LIGHT)
+========================= */
+:root {
+  --bg: #f4f8ff;
+  --surface: #ffffff;
+  --border: #e2ecff;
+
+  --blue: #4a90e2;
+  --blue-dark: #2563eb;
+  --green: #34c786;
+
+  --text-primary: #1a2340;
+  --text-secondary: #5a6a8a;
+  --text-muted: #9aaac2;
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 2px 8px rgba(74, 144, 226, 0.08);
+  --shadow-md: 0 6px 24px rgba(74, 144, 226, 0.12);
+
+  --transition: 0.25s ease;
+
+  --section-padding: 72px 0;
+
+  --font: "Nunito", sans-serif;
+}
+
+/* =========================
+   3. DARK THEME
+========================= */
+[data-theme="dark"] {
+  --bg: #131c30;
+  --surface: #1e2a45;
+  --border: #2c3e60;
+
+  --blue: #5fa8f5;
+  --blue-dark: #93c5fd;
+  --green: #3dd68c;
+
+  --text-primary: #e8eeff;
+  --text-secondary: #9aaac2;
+  --text-muted: #5a6a8a;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================
+   4. RESET
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  overflow-x: visible;
+  overflow-y: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition:
+    background var(--transition),
+    color var(--transition);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =========================
+   5. ACCESSIBILITY
+========================= */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* =========================
+   6. UTILITIES
+========================= */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+/* =========================
+   7. NAVIGATION
+========================= */
+.nav {
+  position: relative;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+/* Show the correct logo variant based on theme */
+.logo-dark {
+  display: none;
+}
+
+[data-theme="dark"] .logo-light {
+  display: none;
+}
+
+[data-theme="dark"] .logo-dark {
+  display: inline;
+}
+
+/* Desktop nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+/* Hamburger toggle button */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.nav-toggle:hover {
+  background: var(--border);
+}
+
+/* Mobile drawer */
+.nav-drawer {
+  display: none;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  padding: 16px 20px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-drawer.open {
+  display: flex;
+}
+
+.nav-drawer a {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  transition: color var(--transition);
+}
+
+.nav-drawer a:last-child {
+  border-bottom: none;
+}
+
+.nav-drawer a:hover {
+  color: var(--blue);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+  color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.nav.is-stuck {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: var(--surface);
+}
+
+[data-theme="dark"] .nav.is-stuck {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================
+   8. BUTTONS
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+}
+
+.btn-green {
+  background: var(--green);
+  color: white;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+}
+
+/* =========================
+   9. HERO
+========================= */
+.hero {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--border);
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.hero-title em {
+  color: var(--blue);
+  font-style: normal;
+}
+
+.hero-sub {
+  max-width: 500px;
+  margin: auto;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-accent {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-pill {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   10. SECTION SHARED LABELS
+========================= */
+.section-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 540px;
+}
+
+/* =========================
+   11. GAMES
+========================= */
+.games {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  margin: 0 20px;
+}
+
+.games-header {
+  padding: 40px 40px 28px;
+}
+
+.games-header .section-sub {
+  margin-top: 4px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  padding: 0 40px 40px;
+}
+
+/* Game Card */
+.game-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: var(--transition);
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.game-icon-placeholder {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+
+.icon-blue {
+  background: #ddeeff;
+}
+
+.icon-green {
+  background: #d4f5e5;
+}
+
+.icon-peach {
+  background: #ffe8df;
+}
+
+[data-theme="dark"] .icon-blue {
+  background: #1a3050;
+}
+[data-theme="dark"] .icon-green {
+  background: #0e3326;
+}
+[data-theme="dark"] .icon-peach {
+  background: #3a1e14;
+}
+
+.game-name {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.game-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.game-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   12. ABOUT
+========================= */
+.about-card {
+  background: var(--surface);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.about-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+  line-height: 1;
+}
+
+.about-text {
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+.about-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 24px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-weight: 900;
+  font-size: 1.75rem;
+  color: var(--blue);
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* =========================
+   13. CONTACT
+========================= */
+.contact-card {
+  background: var(--surface);
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.contact-emoji {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+  line-height: 1;
+}
+
+.contact-text {
+  color: var(--text-secondary);
+  margin-top: 8px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-email-block {
+  margin-top: 24px;
+}
+
+.contact-email-link {
+  font-weight: 800;
+  color: var(--blue);
+  font-size: 1.05rem;
+}
+
+.contact-email-link:hover {
+  text-decoration: underline;
+}
+
+.contact-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* =========================
+   14. FOOTER
+========================= */
+.footer {
+  margin-top: 60px;
+  background: #1a2340;
+  color: #c8d6f0;
+}
+
+.footer-inner {
+  padding: 40px 0 24px;
+}
+
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.brand-name span {
+  color: var(--blue);
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: #8aa0c0;
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact p {
+  font-size: 0.85rem;
+  color: #8aa0c0;
+  margin-bottom: 4px;
+}
+
+.footer-contact a {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--blue);
+  transition: color var(--transition);
+}
+
+.footer-contact a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  font-size: 0.8rem;
+  color: #8aa0c0;
+  text-align: center;
+  padding-top: 20px;
+}
+
+/* =========================
+   15. PRIVACY CARD (consistent with about/contact)
+========================= */
+.privacy-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+}
+
+.privacy-section {
+  margin-bottom: 40px;
+}
+
+.privacy-section h2 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.privacy-section .icon {
+  font-size: 1.1rem;
+}
+
+.privacy-section p,
+.privacy-section li {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.privacy-section ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 8px 0 12px;
+}
+
+.privacy-section ul li {
+  margin-bottom: 6px;
+}
+
+.privacy-contact-link {
+  color: var(--blue);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.privacy-contact-link:hover {
+  text-decoration: underline;
+}
+
+.updated-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* =========================
+   16. THEME TOGGLE ICON FIX
+========================= */
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+/* Light mode: moon visible */
+:not([data-theme="dark"]) .theme-toggle .icon-moon {
+  display: inline;
+}
+
+/* Dark mode: sun visible, moon hidden */
+[data-theme="dark"] .theme-toggle .icon-sun {
+  display: inline;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+/* =========================
+   17. BACK TO TOP BUTTON
+========================= */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  background: var(--blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--transition),
+    visibility var(--transition),
+    transform var(--transition);
+  z-index: 99;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+  background: var(--blue-dark);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* =========================
+   18. RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  /* Show hamburger, hide desktop nav links */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    padding: 50px 0;
+  }
+
+  .games {
+    margin: 0 10px;
+  }
+
+  .games-header {
+    padding: 28px 20px 18px;
+  }
+
+  .games-grid {
+    padding: 0 20px 28px;
+  }
+
+  .about-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-contact {
+    text-align: left;
+  }
+
+  .back-to-top {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 1.25rem;
+  }
+}
+
+/* =========================
+   19. REDUCED MOTION
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
