@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wax Gaming Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+
+    <script src="admin.js" defer></script>
+</head>
+
+<body>
+
+<div id="loginScreen" class="admin-login">
+
+    <div class="admin-card">
+        <h1>Wax Gaming Admin</h1>
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="Password"
+        >
+
+        <button id="loginBtn" class="btn btn-primary">
+            Login
+        </button>
+
+        <p id="loginError"></p>
+    </div>
+
+</div>
+
+<div id="adminPanel" style="display:none">
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="games-header">
+
+                <span class="section-label">
+                    Admin
+                </span>
+
+                <h2 class="section-title">
+                    Game Manager
+                </h2>
+
+                <div class="admin-actions">
+
+                    <button
+                        id="addGameBtn"
+                        class="btn btn-green"
+                    >
+                        + Add Game
+                    </button>
+
+                    <button
+                        id="exportBtn"
+                        class="btn btn-primary"
+                    >
+                        Export JSON
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="gamesList"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>

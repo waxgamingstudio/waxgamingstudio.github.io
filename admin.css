@@ -1,0 +1,57 @@
+.admin-login{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.admin-card{
+    background:var(--surface);
+    padding:40px;
+    border-radius:var(--radius-lg);
+    width:400px;
+    max-width:90%;
+    box-shadow:var(--shadow-md);
+}
+
+.admin-card h1{
+    margin-bottom:20px;
+}
+
+.admin-card input{
+    width:100%;
+    padding:12px;
+    margin-bottom:16px;
+    border:1px solid var(--border);
+    border-radius:10px;
+}
+
+.admin-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:20px;
+}
+
+.admin-game{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.admin-game input,
+.admin-game textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.admin-preview{
+    width:80px;
+    height:80px;
+    border-radius:12px;
+    object-fit:cover;
+    margin-bottom:10px;
+}

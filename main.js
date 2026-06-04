@@ -21,6 +21,8 @@ async function initApp() {
 
   initBackToTop();
   initStickyHeader();
+
+  initAdminShortcut();
 }
 
 /* =========================
@@ -262,4 +264,29 @@ async function loadGames() {
   } catch (error) {
     console.error(error);
   }
+}
+
+
+/* =========================
+   ADMIN SHORTCUT
+========================= */
+
+function initAdminShortcut() {
+  const trigger = document.getElementById("adminTrigger");
+
+  if (!trigger) return;
+
+  let clicks = 0;
+
+  trigger.addEventListener("click", () => {
+    clicks++;
+
+    if (clicks === 3) {
+      window.location.href = "admin.html";
+    }
+
+    setTimeout(() => {
+      clicks = 0;
+    }, 800);
+  });
 }
