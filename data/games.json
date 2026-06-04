@@ -1,0 +1,20 @@
+{
+  "games": [
+    {
+      "id": "stack-blitz",
+      "name": "Stack Blitz",
+      "description": "A fast-paced stacking puzzle game. Build the tallest tower you can.",
+      "appStoreUrl": "#",
+      "playStoreUrl": "#",
+      "icon": ""
+    },
+    {
+      "id": "bubble-pop-rush",
+      "name": "Bubble Pop Rush",
+      "description": "Pop colourful bubbles in satisfying combos. Relaxing yet addictive.",
+      "appStoreUrl": "#",
+      "playStoreUrl": "#",
+      "icon": ""
+    }
+  ]
+}

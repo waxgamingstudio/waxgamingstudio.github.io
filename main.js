@@ -13,9 +13,12 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 async function initApp() {
   await loadComponents();
+
   initNav();
   initThemeButtons();
-  initGameVisibility();
+
+  await loadGames();
+
   initBackToTop();
   initStickyHeader();
 }
@@ -90,22 +93,7 @@ function initThemeButtons() {
   });
 }
 
-/* =========================
-   GAME VISIBILITY
-   Set a game's value to false to hide its card.
-========================= */
-function initGameVisibility() {
-  const config = {
-    "game-stack-blitz": true,
-    "game-bubble-pop": true,
-    "game-color-dash": false,
-  };
 
-  Object.entries(config).forEach(([id, show]) => {
-    const el = document.getElementById(id);
-    if (el) el.classList.toggle("is-hidden", !show);
-  });
-}
 
 /* =========================
    BACK TO TOP BUTTON
@@ -186,4 +174,92 @@ function initStickyHeader() {
   const resizeObserver = new ResizeObserver(() => update());
   resizeObserver.observe(header);
   update();
+}
+
+
+/* =========================
+   GAMES DATABASE
+========================= */
+
+async function loadGames() {
+  const grid = document.getElementById("gamesGrid");
+
+  if (!grid) return;
+
+  try {
+    const response = await fetch("data/games.json");
+
+    if (!response.ok) {
+      throw new Error("Failed to load games.json");
+    }
+
+    const data = await response.json();
+
+    grid.innerHTML = "";
+
+    data.games.forEach((game) => {
+      const card = document.createElement("article");
+
+      card.className = "game-card";
+
+      card.innerHTML = `
+        ${
+          game.icon
+            ? `
+              <img
+                src="${game.icon}"
+                alt="${game.name}"
+                class="game-icon"
+              >
+            `
+            : `
+              <div class="game-icon-placeholder">
+                🎮
+              </div>
+            `
+        }
+
+        <div>
+          <h3 class="game-name">${game.name}</h3>
+          <p class="game-desc">${game.description}</p>
+        </div>
+
+        <div class="game-actions">
+
+          ${
+            game.appStoreUrl
+              ? `
+                <a
+                  href="${game.appStoreUrl}"
+                  target="_blank"
+                  class="btn btn-primary btn-sm"
+                >
+                  🍎 App Store
+                </a>
+              `
+              : ""
+          }
+
+          ${
+            game.playStoreUrl
+              ? `
+                <a
+                  href="${game.playStoreUrl}"
+                  target="_blank"
+                  class="btn btn-green btn-sm"
+                >
+                  ▶ Play Store
+                </a>
+              `
+              : ""
+          }
+
+        </div>
+      `;
+
+      grid.appendChild(card);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
