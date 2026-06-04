@@ -1,81 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wax Gaming Admin</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wax Gaming Admin</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="admin.css">
-
-    <script src="admin.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
 </head>
-
 <body>
 
-<div id="loginScreen" class="admin-login">
+  <section class="section">
+    <div class="container">
 
-    <div class="admin-card">
-        <h1>Wax Gaming Admin</h1>
+      <div class="games-header">
+        <span class="section-label">Admin Panel</span>
 
-        <input
-            type="password"
-            id="passwordInput"
-            placeholder="Password"
-        >
+        <h1 class="section-title">
+          Wax Gaming Game Manager
+        </h1>
 
-        <button id="loginBtn" class="btn btn-primary">
-            Login
-        </button>
+        <p class="section-sub">
+          Add, edit, delete and reorder games.
+        </p>
 
-        <p id="loginError"></p>
-    </div>
+        <div class="admin-actions">
+          <button id="addGameBtn" class="btn btn-green">
+            + Add Game
+          </button>
 
-</div>
-
-<div id="adminPanel" style="display:none">
-
-    <section class="section">
-
-        <div class="container">
-
-            <div class="games-header">
-
-                <span class="section-label">
-                    Admin
-                </span>
-
-                <h2 class="section-title">
-                    Game Manager
-                </h2>
-
-                <div class="admin-actions">
-
-                    <button
-                        id="addGameBtn"
-                        class="btn btn-green"
-                    >
-                        + Add Game
-                    </button>
-
-                    <button
-                        id="exportBtn"
-                        class="btn btn-primary"
-                    >
-                        Export JSON
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div id="gamesList"></div>
-
+          <button id="exportBtn" class="btn btn-primary">
+            Export JSON
+          </button>
         </div>
+      </div>
 
-    </section>
+      <div id="gamesList"></div>
 
-</div>
+    </div>
+  </section>
 
+  <script src="admin.js"></script>
 </body>
 </html>

@@ -1,214 +1,309 @@
-const ADMIN_PASSWORD = "WaxGaming2026";
-
 let gamesData = {
-    games:[]
+games:[]
 };
 
+document.addEventListener("DOMContentLoaded", () => {
 
-
-
-document
-.getElementById("loginBtn")
-.addEventListener("click", login);
-
-function login(){
-
-    const password =
-        document.getElementById("passwordInput").value;
-
-    if(password !== ADMIN_PASSWORD){
-
-        document.getElementById("loginError")
-        .textContent = "Invalid password";
-
-        return;
-    }
-
-    document.getElementById("loginScreen").style.display = "none";
-
-    document.getElementById("adminPanel").style.display = "block";
-
-    loadGames();
-}
-
-
-
-async function loadGames(){
-
-    const response =
-        await fetch("data/games.json");
-
-    gamesData =
-        await response.json();
-
-    renderGames();
-}
-
-
-
-
-
-function renderGames(){
-
-    const container =
-        document.getElementById("gamesList");
-
-    container.innerHTML = "";
-
-    gamesData.games.forEach((game,index)=>{
-
-        const div =
-            document.createElement("div");
-
-        div.className = "admin-game";
-
-        div.innerHTML = `
-
-            <img
-                class="admin-preview"
-                src="${game.icon || ''}"
-            >
-
-            <input
-                value="${game.name}"
-                onchange="updateField(${index},'name',this.value)"
-            >
-
-            <textarea
-                onchange="updateField(${index},'description',this.value)"
-            >${game.description}</textarea>
-
-            <input
-                value="${game.appStoreUrl}"
-                onchange="updateField(${index},'appStoreUrl',this.value)"
-            >
-
-            <input
-                value="${game.playStoreUrl}"
-                onchange="updateField(${index},'playStoreUrl',this.value)"
-            >
-
-            <input
-                type="file"
-                onchange="uploadIcon(event,${index})"
-            >
-
-            <button
-                class="btn btn-primary"
-                onclick="deleteGame(${index})"
-            >
-                Delete
-            </button>
-        `;
-
-        container.appendChild(div);
-    });
-}
-
-
-
-
-function updateField(index,key,value){
-
-    gamesData.games[index][key] = value;
-}
-
-
-
-
-function deleteGame(index){
-
-    gamesData.games.splice(index,1);
-
-    renderGames();
-}
-
-
+loadGames();
 
 document
 .getElementById("addGameBtn")
-.addEventListener("click",()=>{
-
-    gamesData.games.push({
-
-        id: Date.now().toString(),
-
-        name:"New Game",
-
-        description:"",
-
-        appStoreUrl:"",
-
-        playStoreUrl:"",
-
-        icon:""
-    });
-
-    renderGames();
-});
-
-
-
-
-function uploadIcon(event,index){
-
-    const file =
-        event.target.files[0];
-
-    if(!file) return;
-
-    const reader =
-        new FileReader();
-
-    reader.onload = function(){
-
-        gamesData.games[index].icon =
-            reader.result;
-
-        renderGames();
-    };
-
-    reader.readAsDataURL(file);
-}
-
-
+.addEventListener("click", addGame);
 
 document
 .getElementById("exportBtn")
-.addEventListener("click",exportJson);
+.addEventListener("click", exportJson);
+
+});
+
+async function loadGames(){
+
+try{
+
+```
+const response =
+  await fetch("data/games.json");
+
+gamesData =
+  await response.json();
+
+renderGames();
+```
+
+}catch(error){
+
+```
+console.error(error);
+
+alert("Unable to load data/games.json");
+```
+
+}
+
+}
+
+function renderGames(){
+
+const container =
+document.getElementById("gamesList");
+
+container.innerHTML = "";
+
+gamesData.games.forEach((game,index)=>{
+
+```
+const div =
+  document.createElement("div");
+
+div.className = "admin-game";
+
+div.innerHTML = `
+
+  <h3>Game ${index + 1}</h3>
+
+  <label>Game Title</label>
+
+  <input
+    type="text"
+    value="${escapeHtml(game.name || "")}"
+    onchange="updateField(${index},'name',this.value)"
+    placeholder="Game Title"
+  >
+
+  <label>Game Description</label>
+
+  <textarea
+    onchange="updateField(${index},'description',this.value)"
+    placeholder="Game Description"
+  >${escapeHtml(game.description || "")}</textarea>
+
+  <label>App Store Link</label>
+
+  <input
+    type="url"
+    value="${escapeHtml(game.appStoreUrl || "")}"
+    onchange="updateField(${index},'appStoreUrl',this.value)"
+    placeholder="https://apps.apple.com/..."
+  >
+
+  <label>Google Play Link</label>
+
+  <input
+    type="url"
+    value="${escapeHtml(game.playStoreUrl || "")}"
+    onchange="updateField(${index},'playStoreUrl',this.value)"
+    placeholder="https://play.google.com/..."
+  >
+
+  <label>Select Icon</label>
+
+  ${
+    game.icon
+    ? `<img class="admin-preview" src="${game.icon}">`
+    : `<div class="admin-preview"></div>`
+  }
+
+  <input
+    type="file"
+    accept="image/*"
+    onchange="uploadIcon(event,${index})"
+  >
+
+  <div class="admin-buttons">
+
+    <button
+      class="btn btn-green"
+      onclick="moveUp(${index})"
+    >
+      ↑ Move Up
+    </button>
+
+    <button
+      class="btn btn-green"
+      onclick="moveDown(${index})"
+    >
+      ↓ Move Down
+    </button>
+
+    <button
+      class="btn btn-primary"
+      onclick="duplicateGame(${index})"
+    >
+      Duplicate
+    </button>
+
+    <button
+      class="btn btn-primary"
+      onclick="deleteGame(${index})"
+    >
+      Delete
+    </button>
+
+  </div>
+
+`;
+
+container.appendChild(div);
+```
+
+});
+
+}
+
+function updateField(index,key,value){
+
+gamesData.games[index][key] = value;
+
+}
+
+function addGame(){
+
+gamesData.games.push({
+
+```
+id: Date.now().toString(),
+
+name:"",
+description:"",
+appStoreUrl:"",
+playStoreUrl:"",
+icon:""
+```
+
+});
+
+renderGames();
+
+}
+
+function deleteGame(index){
+
+if(!confirm("Delete this game?"))
+return;
+
+gamesData.games.splice(index,1);
+
+renderGames();
+
+}
+
+function duplicateGame(index){
+
+const copy =
+JSON.parse(
+JSON.stringify(
+gamesData.games[index]
+)
+);
+
+copy.id =
+Date.now().toString();
+
+gamesData.games.push(copy);
+
+renderGames();
+
+}
+
+function moveUp(index){
+
+if(index === 0)
+return;
+
+[
+gamesData.games[index - 1],
+gamesData.games[index]
+] = [
+gamesData.games[index],
+gamesData.games[index - 1]
+];
+
+renderGames();
+
+}
+
+function moveDown(index){
+
+if(index === gamesData.games.length - 1)
+return;
+
+[
+gamesData.games[index + 1],
+gamesData.games[index]
+] = [
+gamesData.games[index],
+gamesData.games[index + 1]
+];
+
+renderGames();
+
+}
+
+function uploadIcon(event,index){
+
+const file =
+event.target.files[0];
+
+if(!file)
+return;
+
+const reader =
+new FileReader();
+
+reader.onload = () => {
+
+```
+gamesData.games[index].icon =
+  reader.result;
+
+renderGames();
+```
+
+};
+
+reader.readAsDataURL(file);
+
+}
 
 function exportJson(){
 
-    const blob =
-        new Blob(
-            [
-                JSON.stringify(
-                    gamesData,
-                    null,
-                    2
-                )
-            ],
-            {
-                type:"application/json"
-            }
-        );
+const json =
+JSON.stringify(
+gamesData,
+null,
+2
+);
 
-    const url =
-        URL.createObjectURL(blob);
+const blob =
+new Blob(
+[json],
+{
+type:"application/json"
+}
+);
 
-    const a =
-        document.createElement("a");
+const url =
+URL.createObjectURL(blob);
 
-    a.href = url;
+const a =
+document.createElement("a");
 
-    a.download = "games.json";
+a.href = url;
+a.download = "games.json";
 
-    a.click();
+a.click();
 
-    URL.revokeObjectURL(url);
+URL.revokeObjectURL(url);
+
 }
 
+function escapeHtml(str){
 
+return str
+.replace(/&/g,"&")
+.replace(/</g,"<")
+.replace(/>/g,">")
+.replace(/"/g,""")
+.replace(/'/g,"'");
 
-
-
+}
